@@ -1,28 +1,30 @@
-<!-- <h1>Page Header</h1>
+---
+layout: default
+---
 
-<p>This is a test message.</p>
+Remember when folks used to have janky personal web pages in the 90s? Wasn't that cool?
 
-**This text is bold**
+I built this as a quick-and-dirty place to host projects I make in my spare time —
+some by hand, some with AI doing the heavy lifting. Each section says which is which.
 
-_This text is italicized_
+## My Own Projects
 
-[Link to the Google Homepage](https://www.google.com)
+_Coming soon._
 
-![Is this a caption?](https://images.unsplash.com/photo-1586114660110-6ee69267d936?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80) -->
+## AI-Assisted Projects
 
-<h1> Mike's Portfolio </h1>
-<p> Remember when folks used to have janky personal web pages in the 90s? Wasn't that cool? 
+Everything below was built with help from AI in some form. Use at your own risk.
 
-Built this to have a quick and dirty test environment for hosting the projects I build on my own and ask AI to build for me in my spare time. Don't worry, I'll make it clear which is which.
-</p>
+| Project | Status | Description |
+|---|---|---|
+| [Games](https://pixelthesprite.github.io/extracorporeal-games/) | Live | Short one-liner here |
+| Media Literacy Training | Coming soon | Short one-liner here |
+| Home Visualization Tool | Coming soon | Short one-liner here |
 
-<h2>AI Projects</h2>
-<p> All of the below have been created with assistance from AI in some form or another. Use at your own risk. </p>
+## Contact
 
-[Games](https://pixelthesprite.github.io/extracorporeal-games/)
+[GitHub](https://github.com/PixelTheSprite)
 
-[Media Literacy Training - Coming soon!]
+---
 
-[Home Visualization Tool - Coming soon!]
-
-<p>Footer that should include a copyright or something. (C)2026 </p>
+<small>© 2026 Mike. Content is my own; AI-assisted projects are labeled.</small>

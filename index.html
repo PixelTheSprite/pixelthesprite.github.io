@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mike's Portfolio</title>
+  <meta name="description" content="A janky 90s-style home for my side projects — some hand-built, some AI-assisted.">
+  <meta name="author" content="Mike">
+  <link rel="canonical" href="https://pixelthesprite.github.io/">
+
+  <!-- How the page looks when shared on social media and chat apps -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mike's Portfolio">
+  <meta property="og:description" content="A janky 90s-style home for my side projects — some hand-built, some AI-assisted.">
+  <meta property="og:url" content="https://pixelthesprite.github.io/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/carousel.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Toolbar: the same on every page; aria-current marks the page you're on. -->
+  <header class="site-header">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="./">Mike's Portfolio</a>
+      <ul class="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="card">
+      <p class="eyebrow">Welcome</p>
+      <h1>Hi, and welcome to my corner of the internet.</h1>
+      <p class="lead">Remember when folks used to have janky personal web pages in the 90s? Wasn't that cool?</p>
+      <p>I built this as a quick-and-dirty place to host projects I make in my spare time —
+        some by hand, some with AI doing the heavy lifting. The <a href="projects.html">Projects</a> page says which is which.</p>
+    </section>
+
+    <section class="card" aria-labelledby="photos-heading">
+      <h2 id="photos-heading">Cat photos</h2>
+      <p class="muted">A few favorites from Instagram.</p>
+      <!-- Filled in by assets/js/carousel.js from the list in assets/data/photos.json -->
+      <div class="carousel" data-carousel data-src="assets/data/photos.json"
+           role="region" aria-roledescription="carousel" aria-label="Cat photos from Instagram"></div>
+    </section>
+  </main>
+
+  <!-- Footer: the same on every page. -->
+  <footer class="site-footer">
+    <p>© 2026 Mike · Background photo by
+      <a href="https://unsplash.com/@abyanathif?utm_source=pixelthesprite&amp;utm_medium=referral">Abyan Athif</a> on
+      <a href="https://unsplash.com/photos/the-water-is-reflecting-the-sunlight-on-the-sand-K0U0eSAjFGU?utm_source=pixelthesprite&amp;utm_medium=referral">Unsplash</a>
+      · Hosted on GitHub Pages</p>
+  </footer>
+</body>
+</html>

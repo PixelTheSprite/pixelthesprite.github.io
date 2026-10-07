@@ -1,0 +1,468 @@
+/* ==========================================================================
+   Site styles. Colors and sizes are variables at the top; dark mode
+   overrides them automatically when the visitor's device is set to dark.
+   ========================================================================== */
+
+:root {
+  --page-bg: #cfe3e3;
+  --surface: #ffffff;
+  --surface-muted: #f3f5f7;
+  --text: #1d2329;
+  --text-muted: #5b6670;
+  --border: rgba(16, 24, 32, 0.1);
+  --accent: #0b6e8a;
+  --accent-hover: #095a71;
+  --accent-soft: rgba(11, 110, 138, 0.1);
+  --header-bg: rgba(255, 255, 255, 0.82);
+  --shadow: 0 1px 2px rgba(16, 24, 32, 0.06), 0 8px 28px rgba(16, 24, 32, 0.14);
+  --live: #1a7f4b;
+  --live-soft: rgba(26, 127, 75, 0.12);
+  --radius: 16px;
+  --content-width: 880px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page-bg: #10171a;
+    --surface: #1a2024;
+    --surface-muted: #232a2f;
+    --text: #e7ebee;
+    --text-muted: #9ba7b0;
+    --border: rgba(255, 255, 255, 0.1);
+    --accent: #5cc3dd;
+    --accent-hover: #86d5e8;
+    --accent-soft: rgba(92, 195, 221, 0.14);
+    --header-bg: rgba(20, 26, 30, 0.8);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px rgba(0, 0, 0, 0.45);
+    --live: #5fd39a;
+    --live-soft: rgba(95, 211, 154, 0.14);
+    color-scheme: dark;
+  }
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text);
+  /* Tiled background photo by Abyan Athif on Unsplash (credited in the footer) */
+  background:
+    url('https://images.unsplash.com/photo-1568191009535-7d8b407d389a?auto=format&fit=crop&w=600&q=70') repeat fixed,
+    var(--page-bg);
+  background-size: 400px auto, auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Dim the background photo so the dark cards don't glare against it */
+  body {
+    background:
+      linear-gradient(rgba(10, 14, 16, 0.72), rgba(10, 14, 16, 0.72)) fixed,
+      url('https://images.unsplash.com/photo-1568191009535-7d8b407d389a?auto=format&fit=crop&w=600&q=70') repeat fixed,
+      var(--page-bg);
+    background-size: auto, 400px auto, auto;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: clamp(1.9rem, 4vw + 1rem, 2.6rem);
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip-link:focus {
+  left: 16px;
+  top: 12px;
+  z-index: 100;
+  padding: 8px 14px;
+  background: var(--surface);
+  border-radius: 8px;
+}
+
+/* ---------- Toolbar ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--header-bg);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 16px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.brand:hover {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-links a {
+  display: block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+  background: var(--surface-muted);
+}
+
+.nav-links a[aria-current="page"] {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Phones: tighter spacing so the toolbar fits on one row. On very narrow
+   screens it wraps to two rows, and the padding keeps that looking deliberate. */
+@media (max-width: 480px) {
+  .nav {
+    padding: 8px 12px;
+    gap: 4px 8px;
+  }
+
+  .brand {
+    font-size: 0.98rem;
+  }
+
+  .nav-links {
+    gap: 0;
+  }
+
+  .nav-links a {
+    padding: 6px 9px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ---------- Page content ---------- */
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 40px 16px 24px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(22px, 4vw, 40px);
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.lead {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+/* ---------- Project cards ---------- */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.project h3 {
+  margin-bottom: 6px;
+}
+
+.project p {
+  flex: 1;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.project-link {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.badge {
+  align-self: flex-start;
+  margin-bottom: 12px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--border);
+}
+
+.badge-live {
+  color: var(--live);
+  background: var(--live-soft);
+}
+
+/* ---------- Contact ---------- */
+
+.contact-list {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.contact-list a:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.contact-list span {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  padding: 8px 16px 32px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.site-footer p {
+  display: inline-block;
+  margin: 0;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--header-bg);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: var(--text-muted);
+}
+
+.site-footer a {
+  color: inherit;
+}
+
+/* ---------- Photo carousel (assets/js/carousel.js) ---------- */
+
+.carousel {
+  position: relative;
+  margin-top: 20px;
+}
+
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  border-radius: 12px;
+  background: #111;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  margin: 0;
+  scroll-snap-align: start;
+  aspect-ratio: 4 / 3;
+}
+
+.carousel-slide a,
+.carousel-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-slide img {
+  object-fit: cover;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: calc(50% - 15px); /* centre on the photo, not the dots below it */
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  padding: 0 0 4px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: #1d2329;
+  font-size: 28px;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.15s;
+}
+
+.carousel-btn:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.06);
+}
+
+.carousel-prev { left: 12px; }
+.carousel-next { right: 12px; }
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 14px;
+  height: 30px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--text-muted);
+  opacity: 0.4;
+  cursor: pointer;
+  transition: width 0.2s, opacity 0.2s, background-color 0.2s;
+}
+
+.carousel-dot[aria-current="true"] {
+  width: 22px;
+  opacity: 1;
+  background: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

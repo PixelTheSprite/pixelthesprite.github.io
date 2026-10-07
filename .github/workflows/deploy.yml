@@ -1,0 +1,48 @@
+# Publishes the site to GitHub Pages on every push to main.
+# The site is plain HTML/CSS/JS, so there's no build step: the files are published as-is,
+# minus the repo-only files excluded below.
+# One-time setup: repo Settings → Pages → Build and deployment → Source: "GitHub Actions".
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # allows a manual run from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let an in-progress deployment finish rather than cancelling it.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Collect site files
+        run: |
+          mkdir -p _site
+          rsync -a ./ _site/ \
+            --exclude _site \
+            --exclude '.git*' \
+            --exclude .github \
+            --exclude README.md \
+            --exclude ROADMAP.md
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
